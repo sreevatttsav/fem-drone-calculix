@@ -1,0 +1,95 @@
+{
+  "source": "calculix_ccx_native",
+  "predicted_frequencies_hz": [
+    21.728245773334308,
+    33.14108785397621,
+    138.01987766838292
+  ],
+  "rpm_range": [
+    3000.0,
+    9000.0
+  ],
+  "blades": 2,
+  "base_margin_fraction": 0.15,
+  "held_out_p95_error_percent_by_mode": [
+    0.8040605013485831,
+    2.08976071346004,
+    0.870919214195771
+  ],
+  "checks": [
+    {
+      "mode": 1,
+      "excitation": "1P",
+      "excitation_range_hz": [
+        50.0,
+        150.0
+      ],
+      "closest_excitation_hz": 50.0,
+      "minimum_separation_fraction": 1.3011521740683647,
+      "required_separation_fraction": 0.15804060501348582,
+      "passes": true
+    },
+    {
+      "mode": 1,
+      "excitation": "blade_pass",
+      "excitation_range_hz": [
+        100.0,
+        300.0
+      ],
+      "closest_excitation_hz": 100.0,
+      "minimum_separation_fraction": 3.6023043481367294,
+      "required_separation_fraction": 0.15804060501348582,
+      "passes": true
+    },
+    {
+      "mode": 2,
+      "excitation": "1P",
+      "excitation_range_hz": [
+        50.0,
+        150.0
+      ],
+      "closest_excitation_hz": 50.0,
+      "minimum_separation_fraction": 0.508701229733504,
+      "required_separation_fraction": 0.1708976071346004,
+      "passes": true
+    },
+    {
+      "mode": 2,
+      "excitation": "blade_pass",
+      "excitation_range_hz": [
+        100.0,
+        300.0
+      ],
+      "closest_excitation_hz": 100.0,
+      "minimum_separation_fraction": 2.0174024594670077,
+      "required_separation_fraction": 0.1708976071346004,
+      "passes": true
+    },
+    {
+      "mode": 3,
+      "excitation": "1P",
+      "excitation_range_hz": [
+        50.0,
+        150.0
+      ],
+      "closest_excitation_hz": 138.01987766838292,
+      "minimum_separation_fraction": 0.0,
+      "required_separation_fraction": 0.1587091921419577,
+      "passes": false
+    },
+    {
+      "mode": 3,
+      "excitation": "blade_pass",
+      "excitation_range_hz": [
+        100.0,
+        300.0
+      ],
+      "closest_excitation_hz": 138.01987766838292,
+      "minimum_separation_fraction": 0.0,
+      "required_separation_fraction": 0.1587091921419577,
+      "passes": false
+    }
+  ],
+  "passes": false,
+  "interpretation": "Frequency separation screen only; modal amplitude and damping are not predicted."
+}

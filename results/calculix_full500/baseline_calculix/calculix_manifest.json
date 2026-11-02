@@ -1,0 +1,49 @@
+{
+  "inp_path": "results/calculix_full500/baseline_calculix/x_quad_modal.inp",
+  "tip_node_ids": [
+    84,
+    128,
+    172,
+    216
+  ],
+  "tip_locations_m": [
+    [
+      0.19435028842544402,
+      0.194350288425444,
+      0.0
+    ],
+    [
+      -0.194350288425444,
+      0.19435028842544402,
+      0.0
+    ],
+    [
+      -0.19435028842544405,
+      -0.194350288425444,
+      0.0
+    ],
+    [
+      0.19435028842544397,
+      -0.19435028842544405,
+      0.0
+    ]
+  ],
+  "mass_estimate_kg": 1.0819299087727594,
+  "mesh": {
+    "node_count": 473,
+    "shell_element_count": 116,
+    "equation_count": 108,
+    "clamped_nodes": 36,
+    "mass_element_count": 5,
+    "element_type": "S8R",
+    "hub_model": "coplanar_equivalent_two_plate_shell",
+    "hub_equivalent_thickness_m": 0.010583005244258363,
+    "hub_material_scale": 0.3779644730092272,
+    "clamp_model": "hub_corner_interpolation_EQUATION",
+    "generator": "native_gmsh_msh2",
+    "target_size_m": 0.025,
+    "geometry_file": "results/calculix_full500/baseline_calculix/x_quad_shells.geo",
+    "mode_count_requested": 12
+  },
+  "provenance": "provisional_shell_deck_unverified_until_ccx_and_physical_test"
+}

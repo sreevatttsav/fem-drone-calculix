@@ -1,0 +1,313 @@
+{
+  "schema_version": 1,
+  "source": "calculix_ccx_native",
+  "not_ansys_or_test_data": true,
+  "seed": 42,
+  "input_keys": [
+    "E_long_Pa",
+    "E_trans_Pa",
+    "G_Pa",
+    "arm_length_m",
+    "arm_thickness_m",
+    "arm_width_m",
+    "hub_plate_thickness_m",
+    "hub_width_m",
+    "motor_mass_kg",
+    "payload_mass_kg",
+    "rho_kg_m3"
+  ],
+  "input_ranges": {
+    "E_long_Pa": [
+      45000000000.0,
+      55000000000.00001
+    ],
+    "E_trans_Pa": [
+      10800000000.0,
+      13200000000.000002
+    ],
+    "G_Pa": [
+      3600000000.0,
+      4400000000.0
+    ],
+    "arm_length_m": [
+      0.14250000000000002,
+      0.2375
+    ],
+    "arm_thickness_m": [
+      0.003,
+      0.005
+    ],
+    "arm_width_m": [
+      0.018750000000000003,
+      0.03125
+    ],
+    "hub_plate_thickness_m": [
+      0.0016,
+      0.0024
+    ],
+    "hub_width_m": [
+      0.102,
+      0.13799999999999998
+    ],
+    "motor_mass_kg": [
+      0.06,
+      0.1
+    ],
+    "payload_mass_kg": [
+      0.25,
+      0.75
+    ],
+    "rho_kg_m3": [
+      1520.0,
+      1680.0
+    ]
+  },
+  "train_design_count": 400,
+  "held_out_design_count": 100,
+  "held_out_design_ids": [
+    "D0592",
+    "D0175",
+    "D0591",
+    "D0059",
+    "D0050",
+    "D0296",
+    "D0057",
+    "D0538",
+    "D0413",
+    "D0207",
+    "D0369",
+    "D0302",
+    "D0568",
+    "D0139",
+    "D0467",
+    "D0153",
+    "D0357",
+    "D0455",
+    "D0238",
+    "D0414",
+    "D0068",
+    "D0278",
+    "D0610",
+    "D0066",
+    "D0433",
+    "D0124",
+    "D0476",
+    "D0560",
+    "D0252",
+    "D0314",
+    "D0286",
+    "D0000",
+    "D0318",
+    "D0493",
+    "D0245",
+    "D0583",
+    "D0100",
+    "D0308",
+    "D0070",
+    "D0544",
+    "D0588",
+    "D0479",
+    "D0374",
+    "D0220",
+    "D0025",
+    "D0585",
+    "D0500",
+    "D0623",
+    "D0463",
+    "D0215",
+    "D0614",
+    "D0570",
+    "D0213",
+    "D0224",
+    "D0621",
+    "D0366",
+    "D0190",
+    "D0042",
+    "D0227",
+    "D0192",
+    "D0217",
+    "D0129",
+    "D0322",
+    "D0076",
+    "D0382",
+    "D0182",
+    "D0174",
+    "D0348",
+    "D0587",
+    "D0571",
+    "D0197",
+    "D0178",
+    "D0386",
+    "D0510",
+    "D0389",
+    "D0186",
+    "D0559",
+    "D0106",
+    "D0523",
+    "D0232",
+    "D0336",
+    "D0534",
+    "D0321",
+    "D0405",
+    "D0595",
+    "D0165",
+    "D0422",
+    "D0283",
+    "D0115",
+    "D0198",
+    "D0473",
+    "D0446",
+    "D0056",
+    "D0107",
+    "D0140",
+    "D0237",
+    "D0097",
+    "D0099",
+    "D0247",
+    "D0272"
+  ],
+  "selection_rule": "lowest training-only 3-fold CV median APE across tracked modes",
+  "selected_family": "ANN_MLPRegressor",
+  "selected_configuration": "hidden=(64, 32)",
+  "comparisons": [
+    {
+      "family": "ANN_MLPRegressor",
+      "configuration": "hidden=(32,)",
+      "cv_median_ape_percent": 2.060215537233339,
+      "held_out": {
+        "median_ape_percent_by_mode": [
+          1.5356102452452467,
+          1.8893295847788325,
+          1.4150115568190373
+        ],
+        "p95_ape_percent_by_mode": [
+          5.216339193110515,
+          5.215054315052963,
+          4.317122120046883
+        ],
+        "r2_by_mode": [
+          0.9894092114947516,
+          0.9906015914433213,
+          0.9922207818095089
+        ],
+        "overall_median_ape_percent": 1.5412120974445682
+      }
+    },
+    {
+      "family": "ANN_MLPRegressor",
+      "configuration": "hidden=(64, 32)",
+      "cv_median_ape_percent": 1.8376370311001113,
+      "held_out": {
+        "median_ape_percent_by_mode": [
+          1.4859341961580725,
+          1.991407633872356,
+          1.73908057263268
+        ],
+        "p95_ape_percent_by_mode": [
+          4.564536636025371,
+          7.180524382591028,
+          5.502910846884389
+        ],
+        "r2_by_mode": [
+          0.9925340789976259,
+          0.9865107753876319,
+          0.9900564876292312
+        ],
+        "overall_median_ape_percent": 1.7067413289874818
+      }
+    },
+    {
+      "family": "GPR_GaussianProcessRegressor",
+      "configuration": "length_scale=1.5",
+      "cv_median_ape_percent": 6.323981002974389,
+      "held_out": {
+        "median_ape_percent_by_mode": [
+          4.857426336162915,
+          5.862489698568324,
+          5.402134313725425
+        ],
+        "p95_ape_percent_by_mode": [
+          18.542305630186032,
+          21.829296564024055,
+          18.146687851226737
+        ],
+        "r2_by_mode": [
+          0.8421985430867366,
+          0.8405846921826828,
+          0.8395278761459082
+        ],
+        "overall_median_ape_percent": 5.331438592033445
+      }
+    },
+    {
+      "family": "GPR_GaussianProcessRegressor",
+      "configuration": "length_scale=3.0",
+      "cv_median_ape_percent": 2.335190134784397,
+      "held_out": {
+        "median_ape_percent_by_mode": [
+          1.6155497843688207,
+          1.9541819166354548,
+          1.503433054944882
+        ],
+        "p95_ape_percent_by_mode": [
+          4.523287781301482,
+          6.127454327805622,
+          4.588232424418544
+        ],
+        "r2_by_mode": [
+          0.9881380905269392,
+          0.9871480055645763,
+          0.9886152701422304
+        ],
+        "overall_median_ape_percent": 1.649948638551237
+      }
+    },
+    {
+      "family": "XGBoost_XGBRegressor",
+      "configuration": "max_depth=3",
+      "cv_median_ape_percent": 3.0516695650158994,
+      "held_out": {
+        "median_ape_percent_by_mode": [
+          3.0023695828517987,
+          2.4159703457387196,
+          2.391300327151182
+        ],
+        "p95_ape_percent_by_mode": [
+          8.614253375287648,
+          8.861345733507143,
+          6.158993339091445
+        ],
+        "r2_by_mode": [
+          0.9693597794254387,
+          0.9746615656350405,
+          0.9797215331146956
+        ],
+        "overall_median_ape_percent": 2.5011112495731815
+      }
+    },
+    {
+      "family": "XGBoost_XGBRegressor",
+      "configuration": "max_depth=5",
+      "cv_median_ape_percent": 3.8132492180244224,
+      "held_out": {
+        "median_ape_percent_by_mode": [
+          3.875614084212038,
+          3.88712945394957,
+          3.0252587727222005
+        ],
+        "p95_ape_percent_by_mode": [
+          9.252442124480694,
+          10.923542485903285,
+          7.75031240184315
+        ],
+        "r2_by_mode": [
+          0.9472505519960567,
+          0.9515514384101103,
+          0.9651942089261012
+        ],
+        "overall_median_ape_percent": 3.5202726572808833
+      }
+    }
+  ],
+  "target_description": "first two modes by tip MAC; degenerate third/fourth doublet by subspace MAC when present"
+}

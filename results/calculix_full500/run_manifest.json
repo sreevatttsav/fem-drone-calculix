@@ -1,0 +1,49 @@
+{
+  "purpose": "unvalidated_concept_modal_workflow",
+  "simulation_source": "calculix_ccx_native",
+  "backend": "calculix",
+  "solver_version": "2.23",
+  "solver_executable": "bin/ccx_2.23",
+  "mesh_generator": "native_gmsh_msh2",
+  "baseline_source_files": {
+    "inp": "results/calculix_full500/baseline_calculix/x_quad_modal.inp",
+    "dat": "results/calculix_full500/baseline_calculix/x_quad_modal.dat",
+    "frd": "results/calculix_full500/baseline_calculix/x_quad_modal.frd"
+  },
+  "baseline_mass_kg": 1.0819299087727594,
+  "baseline_flexible_frequencies_hz": [
+    21.65319,
+    32.8875,
+    137.592,
+    137.6317,
+    150.6446,
+    167.9892
+  ],
+  "ansys_solve_performed": false,
+  "calculix_solve_performed": true,
+  "physical_test_performed": false,
+  "design_sha256": "d355c17572ca7b98ea76724921678715cf13140df9b4700c3aa8fe3bc8b8ee0e",
+  "python_version": "3.14.7",
+  "numpy_version": "2.4.6",
+  "seed": 42,
+  "successful_designs": 500,
+  "failed_designs": 128,
+  "mesh_convergence_first_five_within_two_percent": true,
+  "held_out_metrics": {
+    "train_design_count": 400,
+    "test_design_count": 100,
+    "median_ape_percent_by_mode": [
+      0.3339045620827207,
+      0.7495101537859363,
+      0.31042574372196063
+    ],
+    "p95_ape_percent_by_mode": [
+      0.8040605013485831,
+      2.08976071346004,
+      0.870919214195771
+    ],
+    "meets_original_accuracy_goal": true
+  },
+  "screen_passes": false,
+  "pipeline_stage": "surrogate_and_screen_complete"
+}

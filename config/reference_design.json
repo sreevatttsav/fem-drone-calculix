@@ -1,0 +1,31 @@
+{
+  "name": "reference_x_quad_concept",
+  "units": "SI",
+  "arm_length_m": 0.19,
+  "arm_width_m": 0.025,
+  "arm_thickness_m": 0.004,
+  "hub_width_m": 0.12,
+  "hub_plate_thickness_m": 0.002,
+  "motor_mass_kg": 0.08,
+  "payload_mass_kg": 0.5,
+  "E_long_Pa": 50000000000.0,
+  "E_trans_Pa": 12000000000.0,
+  "E_through_Pa": 12000000000.0,
+  "G_Pa": 4000000000.0,
+  "G13_Pa": 4000000000.0,
+  "G23_Pa": 4615384615.384615,
+  "nu12": 0.28,
+  "nu13": 0.28,
+  "nu23": 0.30,
+  "rho_kg_m3": 1600.0,
+  "rpm_min": 3000,
+  "rpm_max": 9000,
+  "blades": 2,
+  "geometry": {
+    "arm_clamp_overlap_m": 0.025,
+    "hub_plate_gap_m": 0.004,
+    "motor_mount_diameter_m": 0.04,
+    "motor_mount_thickness_m": 0.004
+  },
+  "provenance": "Concept values for demonstration only. Replace dimensions, mass and laminate properties with measured or supplier data before validation or design decisions."
+}
