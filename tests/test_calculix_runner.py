@@ -73,8 +73,13 @@ class CalculixParserTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory)
 
-            def write_deck(_design, out_dir, mesh_size_m, mode_count):
+            def write_deck(_design, out_dir, mesh_size_m, mode_count,
+                           mesh_generator, width_division_scale,
+                           hub_stiffness_multiplier):
                 self.assertEqual(mode_count, 12)
+                self.assertEqual(mesh_generator, "auto")
+                self.assertEqual(width_division_scale, 1.0)
+                self.assertEqual(hub_stiffness_multiplier, 1.0)
                 inp = Path(out_dir) / "quad.inp"
                 inp.write_text("*HEADING\n")
                 dat = inp.with_suffix(".dat")

@@ -59,6 +59,22 @@ class CalculixMeshTests(unittest.TestCase):
                 write_calculix_deck(design,directory,mesh_size_m=0)
             with self.assertRaises(ValueError):
                 write_calculix_deck(design,directory,mode_count=6)
+            with self.assertRaises(FileNotFoundError):
+                write_calculix_deck(design,directory,mesh_generator='gmsh')
+            with self.assertRaises(ValueError):
+                write_calculix_deck(design,directory,width_division_scale=0)
+            with self.assertRaises(ValueError):
+                write_calculix_deck(design,directory,hub_stiffness_multiplier=0)
+
+    def test_structured_width_refinement_increases_element_count(self):
+        design=load_design()
+        with tempfile.TemporaryDirectory() as directory:
+            low=write_calculix_deck(design,Path(directory)/'low',mesh_size_m=.025,
+                                    mesh_generator='structured')
+            high=write_calculix_deck(design,Path(directory)/'high',mesh_size_m=.025,
+                                     mesh_generator='structured',width_division_scale=2)
+            self.assertGreater(high['mesh']['shell_element_count'],
+                               low['mesh']['shell_element_count'])
 
 
 if __name__=='__main__':

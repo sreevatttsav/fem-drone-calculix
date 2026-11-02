@@ -70,4 +70,5 @@ using predictions for a real frame. A Campbell separation screen predicts
 frequency proximity, not vibration amplitude or flight safety.
 
 See [the FEM method](docs/fem_method.md), [surrogate method](docs/surrogate_method.md),
-and [experimental validation protocol](docs/experimental_validation.md).
+the [mesh investigation](docs/convergence_investigation.md), and
+[experimental validation protocol](docs/experimental_validation.md).

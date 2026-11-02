@@ -1,0 +1,610 @@
+{
+  "source": "calculix_ccx_native",
+  "cases": [
+    {
+      "name": "arm_thickness_min",
+      "inputs": {
+        "arm_length_m": 0.19,
+        "arm_width_m": 0.025,
+        "arm_thickness_m": 0.003,
+        "hub_width_m": 0.12,
+        "hub_plate_thickness_m": 0.002,
+        "motor_mass_kg": 0.08,
+        "payload_mass_kg": 0.5,
+        "E_long_Pa": 50000000000.0,
+        "E_trans_Pa": 12000000000.0,
+        "G_Pa": 4000000000.0,
+        "rho_kg_m3": 1600.0
+      },
+      "coarse": {
+        "mesh_size_m": 0.025,
+        "frequencies_hz": [
+          15.21115,
+          21.71299,
+          99.47115,
+          99.49735,
+          132.1774,
+          147.2619
+        ],
+        "rigid_frequencies_hz": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0002060533,
+          0.0004183858
+        ],
+        "mass_kg": 1.0475299087727594,
+        "shell_elements": 116,
+        "node_count": 473,
+        "wall_seconds": 0.3712518750689924,
+        "mesh_generator": "native_gmsh_msh2",
+        "options": {}
+      },
+      "fine": {
+        "mesh_size_m": 0.0125,
+        "frequencies_hz": [
+          15.35122,
+          22.03621,
+          100.1039,
+          100.1301,
+          134.9614,
+          149.9798
+        ],
+        "rigid_frequencies_hz": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mass_kg": 1.0475299087727594,
+        "shell_elements": 388,
+        "node_count": 1385,
+        "wall_seconds": 0.7950068330392241,
+        "mesh_generator": "native_gmsh_msh2",
+        "options": {}
+      },
+      "change_percent_by_mode": [
+        0.9124356240090344,
+        1.466767651969187,
+        0.6320932551079443,
+        0.6319278618517323,
+        2.0628120336629525,
+        1.8121773732196031
+      ],
+      "max_target_change_percent": 2.0628120336629525
+    },
+    {
+      "name": "arm_thickness_max",
+      "inputs": {
+        "arm_length_m": 0.19,
+        "arm_width_m": 0.025,
+        "arm_thickness_m": 0.005,
+        "hub_width_m": 0.12,
+        "hub_plate_thickness_m": 0.002,
+        "motor_mass_kg": 0.08,
+        "payload_mass_kg": 0.5,
+        "E_long_Pa": 50000000000.0,
+        "E_trans_Pa": 12000000000.0,
+        "G_Pa": 4000000000.0,
+        "rho_kg_m3": 1600.0
+      },
+      "coarse": {
+        "mesh_size_m": 0.025,
+        "frequencies_hz": [
+          28.05522,
+          45.20587,
+          166.2338,
+          176.3699,
+          176.4225,
+          185.4595
+        ],
+        "rigid_frequencies_hz": [
+          0.0,
+          0.0,
+          0.0,
+          0.0001633608,
+          0.0002573777,
+          0.000361241
+        ],
+        "mass_kg": 1.1163299087727596,
+        "shell_elements": 116,
+        "node_count": 473,
+        "wall_seconds": 0.35530904098413885,
+        "mesh_generator": "native_gmsh_msh2",
+        "options": {}
+      },
+      "fine": {
+        "mesh_size_m": 0.0125,
+        "frequencies_hz": [
+          28.1309,
+          45.82836,
+          169.2868,
+          177.2636,
+          177.3159,
+          187.9489
+        ],
+        "rigid_frequencies_hz": [
+          0.0,
+          0.0,
+          0.0003951876,
+          0.0004555926,
+          0.0007885468,
+          0.0008175172
+        ],
+        "mass_kg": 1.1163299087727596,
+        "shell_elements": 388,
+        "node_count": 1385,
+        "wall_seconds": 0.7942721250001341,
+        "mesh_generator": "native_gmsh_msh2",
+        "options": {}
+      },
+      "change_percent_by_mode": [
+        0.2690280083467005,
+        1.3583073886999364,
+        1.8034483491920204,
+        0.5041644195424191,
+        0.5038465247617306,
+        1.32450894897497
+      ],
+      "max_target_change_percent": 1.8034483491920204
+    },
+    {
+      "name": "arm_length_min",
+      "inputs": {
+        "arm_length_m": 0.14250000000000002,
+        "arm_width_m": 0.025,
+        "arm_thickness_m": 0.004,
+        "hub_width_m": 0.12,
+        "hub_plate_thickness_m": 0.002,
+        "motor_mass_kg": 0.08,
+        "payload_mass_kg": 0.5,
+        "E_long_Pa": 50000000000.0,
+        "E_trans_Pa": 12000000000.0,
+        "G_Pa": 4000000000.0,
+        "rho_kg_m3": 1600.0
+      },
+      "coarse": {
+        "mesh_size_m": 0.025,
+        "frequencies_hz": [
+          30.86721,
+          49.22315,
+          199.801,
+          199.9764,
+          222.238,
+          245.7786
+        ],
+        "rigid_frequencies_hz": [
+          0.0,
+          0.0,
+          0.0003511556,
+          0.0004460738,
+          0.0005765705,
+          0.0007488515
+        ],
+        "mass_kg": 1.0515299087727594,
+        "shell_elements": 100,
+        "node_count": 409,
+        "wall_seconds": 0.35614420799538493,
+        "mesh_generator": "native_gmsh_msh2",
+        "options": {}
+      },
+      "fine": {
+        "mesh_size_m": 0.0125,
+        "frequencies_hz": [
+          31.11574,
+          50.43816,
+          202.3225,
+          202.4999,
+          228.3433,
+          250.8875
+        ],
+        "rigid_frequencies_hz": [
+          0.0006854391,
+          0.0007330406,
+          0.0007545321,
+          0.0009842585,
+          0.001049504,
+          0.001155118
+        ],
+        "mass_kg": 1.0515299087727594,
+        "shell_elements": 324,
+        "node_count": 1161,
+        "wall_seconds": 0.8120458330959082,
+        "mesh_generator": "native_gmsh_msh2",
+        "options": {}
+      },
+      "change_percent_by_mode": [
+        0.7987275893165287,
+        2.408910237804088,
+        1.2462776013542751,
+        1.246173454900464,
+        2.6737373069409087,
+        2.036331024861732
+      ],
+      "max_target_change_percent": 2.6737373069409087
+    },
+    {
+      "name": "arm_length_max",
+      "inputs": {
+        "arm_length_m": 0.2375,
+        "arm_width_m": 0.025,
+        "arm_thickness_m": 0.004,
+        "hub_width_m": 0.12,
+        "hub_plate_thickness_m": 0.002,
+        "motor_mass_kg": 0.08,
+        "payload_mass_kg": 0.5,
+        "E_long_Pa": 50000000000.0,
+        "E_trans_Pa": 12000000000.0,
+        "G_Pa": 4000000000.0,
+        "rho_kg_m3": 1600.0
+      },
+      "coarse": {
+        "mesh_size_m": 0.025,
+        "frequencies_hz": [
+          16.1651,
+          23.82744,
+          101.0067,
+          101.0179,
+          110.067,
+          123.2286
+        ],
+        "rigid_frequencies_hz": [
+          0.0,
+          0.0,
+          0.0003262249,
+          0.0008512268,
+          0.0009153505,
+          0.001010601
+        ],
+        "mass_kg": 1.1123299087727596,
+        "shell_elements": 132,
+        "node_count": 537,
+        "wall_seconds": 0.5373417499940842,
+        "mesh_generator": "native_gmsh_msh2",
+        "options": {}
+      },
+      "fine": {
+        "mesh_size_m": 0.0125,
+        "frequencies_hz": [
+          16.23271,
+          24.04111,
+          101.2821,
+          101.2932,
+          111.726,
+          124.8165
+        ],
+        "rigid_frequencies_hz": [
+          0.0,
+          0.0004836105,
+          0.0005467212,
+          0.0008370633,
+          0.0008601732,
+          0.001242329
+        ],
+        "mass_kg": 1.1123299087727596,
+        "shell_elements": 452,
+        "node_count": 1609,
+        "wall_seconds": 1.026643583085388,
+        "mesh_generator": "native_gmsh_msh2",
+        "options": {}
+      },
+      "change_percent_by_mode": [
+        0.41650469946177776,
+        0.8887692789559237,
+        0.2719137932566611,
+        0.271785272851486,
+        1.4848826593630902,
+        1.2721875713547526
+      ],
+      "max_target_change_percent": 1.4848826593630902
+    },
+    {
+      "name": "payload_mass_min",
+      "inputs": {
+        "arm_length_m": 0.19,
+        "arm_width_m": 0.025,
+        "arm_thickness_m": 0.004,
+        "hub_width_m": 0.12,
+        "hub_plate_thickness_m": 0.002,
+        "motor_mass_kg": 0.08,
+        "payload_mass_kg": 0.25,
+        "E_long_Pa": 50000000000.0,
+        "E_trans_Pa": 12000000000.0,
+        "G_Pa": 4000000000.0,
+        "rho_kg_m3": 1600.0
+      },
+      "coarse": {
+        "mesh_size_m": 0.025,
+        "frequencies_hz": [
+          21.65319,
+          36.56159,
+          137.592,
+          137.6317,
+          150.6446,
+          174.5382
+        ],
+        "rigid_frequencies_hz": [
+          0.0,
+          0.0002005209,
+          0.0003351659,
+          0.0004420092,
+          0.0005443314,
+          0.0006894982
+        ],
+        "mass_kg": 0.8319299087727595,
+        "shell_elements": 116,
+        "node_count": 473,
+        "wall_seconds": 0.3724165828898549,
+        "mesh_generator": "native_gmsh_msh2",
+        "options": {}
+      },
+      "fine": {
+        "mesh_size_m": 0.0125,
+        "frequencies_hz": [
+          21.77678,
+          37.07141,
+          138.3594,
+          138.399,
+          153.6202,
+          177.4422
+        ],
+        "rigid_frequencies_hz": [
+          0.0,
+          0.0,
+          0.0,
+          0.0006790753,
+          0.0007527886,
+          0.0008653066
+        ],
+        "mass_kg": 0.8319299087727595,
+        "shell_elements": 388,
+        "node_count": 1385,
+        "wall_seconds": 0.9372418329585344,
+        "mesh_generator": "native_gmsh_msh2",
+        "options": {}
+      },
+      "change_percent_by_mode": [
+        0.5675311042312045,
+        1.3752376831633804,
+        0.5546424745987485,
+        0.5544115203144574,
+        1.9369848496486881,
+        1.636589266814785
+      ],
+      "max_target_change_percent": 1.9369848496486881
+    },
+    {
+      "name": "payload_mass_max",
+      "inputs": {
+        "arm_length_m": 0.19,
+        "arm_width_m": 0.025,
+        "arm_thickness_m": 0.004,
+        "hub_width_m": 0.12,
+        "hub_plate_thickness_m": 0.002,
+        "motor_mass_kg": 0.08,
+        "payload_mass_kg": 0.75,
+        "E_long_Pa": 50000000000.0,
+        "E_trans_Pa": 12000000000.0,
+        "G_Pa": 4000000000.0,
+        "rho_kg_m3": 1600.0
+      },
+      "coarse": {
+        "mesh_size_m": 0.025,
+        "frequencies_hz": [
+          21.65319,
+          31.08506,
+          137.592,
+          137.6317,
+          150.6446,
+          164.2127
+        ],
+        "rigid_frequencies_hz": [
+          0.0,
+          0.0001614523,
+          0.0002858259,
+          0.0003987427,
+          0.0005358896,
+          0.0006828411
+        ],
+        "mass_kg": 1.3319299087727594,
+        "shell_elements": 116,
+        "node_count": 473,
+        "wall_seconds": 0.42834024992771447,
+        "mesh_generator": "native_gmsh_msh2",
+        "options": {}
+      },
+      "fine": {
+        "mesh_size_m": 0.0125,
+        "frequencies_hz": [
+          21.77678,
+          31.5309,
+          138.3594,
+          138.399,
+          153.6202,
+          166.8168
+        ],
+        "rigid_frequencies_hz": [
+          0.0,
+          0.0,
+          0.0,
+          0.0005191955,
+          0.0005980536,
+          0.0008186651
+        ],
+        "mass_kg": 1.3319299087727594,
+        "shell_elements": 388,
+        "node_count": 1385,
+        "wall_seconds": 0.9872183329425752,
+        "mesh_generator": "native_gmsh_msh2",
+        "options": {}
+      },
+      "change_percent_by_mode": [
+        0.5675311042312045,
+        1.413978034245773,
+        0.5546424745987485,
+        0.5544115203144574,
+        1.9369848496486881,
+        1.5610538027344898
+      ],
+      "max_target_change_percent": 1.9369848496486881
+    },
+    {
+      "name": "combined_soft_heavy",
+      "inputs": {
+        "arm_length_m": 0.2375,
+        "arm_width_m": 0.025,
+        "arm_thickness_m": 0.003,
+        "hub_width_m": 0.12,
+        "hub_plate_thickness_m": 0.002,
+        "motor_mass_kg": 0.08,
+        "payload_mass_kg": 0.75,
+        "E_long_Pa": 45000000000.0,
+        "E_trans_Pa": 10800000000.0,
+        "G_Pa": 3600000000.0,
+        "rho_kg_m3": 1600.0
+      },
+      "coarse": {
+        "mesh_size_m": 0.025,
+        "frequencies_hz": [
+          10.67632,
+          14.10881,
+          69.69519,
+          69.70243,
+          91.81591,
+          100.3326
+        ],
+        "rigid_frequencies_hz": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mass_kg": 1.3203299087727594,
+        "shell_elements": 132,
+        "node_count": 537,
+        "wall_seconds": 0.49720212491229177,
+        "mesh_generator": "native_gmsh_msh2",
+        "options": {}
+      },
+      "fine": {
+        "mesh_size_m": 0.0125,
+        "frequencies_hz": [
+          10.74745,
+          14.24533,
+          69.91922,
+          69.92643,
+          93.32804,
+          101.8203
+        ],
+        "rigid_frequencies_hz": [
+          0.0,
+          0.0,
+          0.0003475397,
+          0.0006109606,
+          0.0007081867,
+          0.0009580272
+        ],
+        "mass_kg": 1.3203299087727594,
+        "shell_elements": 452,
+        "node_count": 1609,
+        "wall_seconds": 1.171224124962464,
+        "mesh_generator": "native_gmsh_msh2",
+        "options": {}
+      },
+      "change_percent_by_mode": [
+        0.6618314111719537,
+        0.9583491572325744,
+        0.32041261329860243,
+        0.32033667384419534,
+        1.6202311759681218,
+        1.4611035323997315
+      ],
+      "max_target_change_percent": 1.6202311759681218
+    },
+    {
+      "name": "combined_stiff_light",
+      "inputs": {
+        "arm_length_m": 0.14250000000000002,
+        "arm_width_m": 0.025,
+        "arm_thickness_m": 0.005,
+        "hub_width_m": 0.12,
+        "hub_plate_thickness_m": 0.002,
+        "motor_mass_kg": 0.08,
+        "payload_mass_kg": 0.25,
+        "E_long_Pa": 55000000000.00001,
+        "E_trans_Pa": 13200000000.000002,
+        "G_Pa": 4400000000.0,
+        "rho_kg_m3": 1600.0
+      },
+      "coarse": {
+        "mesh_size_m": 0.025,
+        "frequencies_hz": [
+          41.30175,
+          78.57,
+          257.4345,
+          269.4107,
+          269.6634,
+          295.766
+        ],
+        "rigid_frequencies_hz": [
+          0.0,
+          0.0,
+          0.0003507306,
+          0.0004347761,
+          0.0005556512,
+          0.0008741991
+        ],
+        "mass_kg": 0.8283299087727595,
+        "shell_elements": 100,
+        "node_count": 409,
+        "wall_seconds": 0.4620398338884115,
+        "mesh_generator": "native_gmsh_msh2",
+        "options": {}
+      },
+      "fine": {
+        "mesh_size_m": 0.0125,
+        "frequencies_hz": [
+          41.44705,
+          80.41532,
+          263.9221,
+          272.5083,
+          272.7629,
+          300.9221
+        ],
+        "rigid_frequencies_hz": [
+          0.0,
+          0.0,
+          0.0,
+          0.0003467886,
+          0.000751194,
+          0.0009110035
+        ],
+        "mass_kg": 0.8283299087727595,
+        "shell_elements": 324,
+        "node_count": 1161,
+        "wall_seconds": 0.8079320830293,
+        "mesh_generator": "native_gmsh_msh2",
+        "options": {}
+      },
+      "change_percent_by_mode": [
+        0.3505677726159012,
+        2.2947368735211167,
+        2.458149582774609,
+        1.1366993225527442,
+        1.136334890118846,
+        1.7134334766373027
+      ],
+      "max_target_change_percent": 2.458149582774609
+    }
+  ],
+  "recommend_finer_mesh_for": [
+    "arm_thickness_min",
+    "arm_length_min",
+    "combined_stiff_light"
+  ]
+}

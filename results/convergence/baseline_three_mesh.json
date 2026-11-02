@@ -1,0 +1,121 @@
+{
+  "source": "calculix_ccx_native",
+  "solver_cases": [
+    {
+      "mesh_size_m": 0.025,
+      "frequencies_hz": [
+        21.65319,
+        32.8875,
+        137.592,
+        137.6317,
+        150.6446,
+        167.9892
+      ],
+      "rigid_frequencies_hz": [
+        0.0,
+        0.0001771389,
+        0.0003060907,
+        0.0004099993,
+        0.0005388704,
+        0.000685462
+      ],
+      "mass_kg": 1.0819299087727594,
+      "shell_elements": 116,
+      "node_count": 473,
+      "wall_seconds": 0.6222575409337878,
+      "mesh_generator": "native_gmsh_msh2",
+      "options": {}
+    },
+    {
+      "mesh_size_m": 0.0125,
+      "frequencies_hz": [
+        21.77678,
+        33.35514,
+        138.3594,
+        138.399,
+        153.6202,
+        170.6943
+      ],
+      "rigid_frequencies_hz": [
+        0.0,
+        0.0,
+        0.0,
+        0.0005769827,
+        0.0006784585,
+        0.0008278227
+      ],
+      "mass_kg": 1.0819299087727594,
+      "shell_elements": 388,
+      "node_count": 1385,
+      "wall_seconds": 0.831906917039305,
+      "mesh_generator": "native_gmsh_msh2",
+      "options": {}
+    },
+    {
+      "mesh_size_m": 0.00625,
+      "frequencies_hz": [
+        21.73294,
+        33.29067,
+        138.2413,
+        138.2808,
+        152.4319,
+        168.4911
+      ],
+      "rigid_frequencies_hz": [
+        0.0,
+        0.0006943375,
+        0.000721211,
+        0.0008461323,
+        0.0008806744,
+        0.001053074
+      ],
+      "mass_kg": 1.0819299087727594,
+      "shell_elements": 1264,
+      "node_count": 4213,
+      "wall_seconds": 2.6216139171738178,
+      "mesh_generator": "native_gmsh_msh2",
+      "options": {}
+    }
+  ],
+  "relative_change_25_to_12_5_percent": [
+    0.5675311042312045,
+    1.4020028097618413,
+    0.5546424745987485,
+    0.5544115203144574,
+    1.9369848496486881,
+    1.5847629358449506
+  ],
+  "relative_change_12_5_to_6_25_percent": [
+    0.2017214421978777,
+    0.19365786269846785,
+    0.08543033087796362,
+    0.08547824426818593,
+    0.779561233573811,
+    1.3076061584261778
+  ],
+  "observed_order": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "richardson_limit_hz": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "estimate_status": [
+    "nonmonotonic or insufficient asymptotic convergence",
+    "nonmonotonic or insufficient asymptotic convergence",
+    "nonmonotonic or insufficient asymptotic convergence",
+    "nonmonotonic or insufficient asymptotic convergence",
+    "nonmonotonic or insufficient asymptotic convergence",
+    "nonmonotonic or insufficient asymptotic convergence"
+  ],
+  "physical_validation": false
+}

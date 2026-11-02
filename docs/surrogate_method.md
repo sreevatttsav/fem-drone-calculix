@@ -26,4 +26,12 @@ The first two targets are assigned to baseline modes by modal assurance criterio
 
 Inference rejects any structural input outside the saved training ranges. The RPM check plots 1P (`RPM / 60`) and blade pass (`blades × RPM / 60`) over the specified operating interval. For each mode and excitation line it computes the minimum fractional separation over the *continuous* RPM range and requires it to exceed 15% plus the held-out 95th-percentile model error. A crossing is flagged for review; passing this frequency screen does not establish vibration amplitude, damping, fatigue life or flight safety.
 
+The surrogate error measures agreement with the chosen FE discretization.
+The separate native mesh study in `results/convergence/` measures frequency
+change under refinement at the baseline and parameter-range corners. Its
+generated `docs/convergence_investigation.md` report should be read alongside
+held-out surrogate metrics. A low surrogate error does not remove FE
+discretization or model-form uncertainty. Neither metric measures agreement
+with a physical frame.
+
 The 95th-percentile test error is an empirical allowance, not a calibrated statistical confidence interval. The 50-design pilot has only ten held-out designs, so the expanded 500-design evaluation is the more useful estimate of error against this beam model.
