@@ -1,0 +1,161 @@
+{
+  "source": "calculix_ccx_native",
+  "published_manifest": "results/calculix_full500/run_manifest.json",
+  "trial_directories": [
+    "build/audit_trial_a",
+    "build/audit_trial_b"
+  ],
+  "published_frequencies_hz": [
+    21.65319,
+    32.8875,
+    137.592,
+    137.6317,
+    150.6446,
+    167.9892
+  ],
+  "fresh_frequencies_hz": [
+    21.65319,
+    32.8875,
+    137.592,
+    137.6317,
+    150.6446,
+    167.9892
+  ],
+  "difference_percent_by_mode": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "difference_exceeds_0_1_percent": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "trial_successes": [
+    10,
+    10
+  ],
+  "trial_failures": [
+    1,
+    1
+  ],
+  "trial_rows_identical": true,
+  "trial_failures_identical": true,
+  "published_successes": 500,
+  "published_rejections": 128,
+  "rejection_reason_counts": {
+    "ambiguous_mode_tracking": 128,
+    "other": 0
+  },
+  "published_target_count": 3,
+  "published_raw_flexible_count": 6,
+  "published_mesh_size_m": 0.025,
+  "sweep_ranges": {
+    "arm_length_m": {
+      "minimum": 0.14250000000000002,
+      "maximum": 0.2375,
+      "unit": "m",
+      "baseline_fraction": [
+        0.75,
+        1.25
+      ]
+    },
+    "arm_width_m": {
+      "minimum": 0.018750000000000003,
+      "maximum": 0.03125,
+      "unit": "m",
+      "baseline_fraction": [
+        0.75,
+        1.25
+      ]
+    },
+    "arm_thickness_m": {
+      "minimum": 0.003,
+      "maximum": 0.005,
+      "unit": "m",
+      "baseline_fraction": [
+        0.75,
+        1.25
+      ]
+    },
+    "hub_width_m": {
+      "minimum": 0.102,
+      "maximum": 0.13799999999999998,
+      "unit": "m",
+      "baseline_fraction": [
+        0.85,
+        1.15
+      ]
+    },
+    "hub_plate_thickness_m": {
+      "minimum": 0.0016,
+      "maximum": 0.0024,
+      "unit": "m",
+      "baseline_fraction": [
+        0.8,
+        1.2
+      ]
+    },
+    "motor_mass_kg": {
+      "minimum": 0.06,
+      "maximum": 0.1,
+      "unit": "kg",
+      "baseline_fraction": [
+        0.75,
+        1.25
+      ]
+    },
+    "payload_mass_kg": {
+      "minimum": 0.25,
+      "maximum": 0.75,
+      "unit": "kg",
+      "baseline_fraction": [
+        0.5,
+        1.5
+      ]
+    },
+    "E_long_Pa": {
+      "minimum": 45000000000.0,
+      "maximum": 55000000000.00001,
+      "unit": "Pa",
+      "baseline_fraction": [
+        0.9,
+        1.1
+      ]
+    },
+    "E_trans_Pa": {
+      "minimum": 10800000000.0,
+      "maximum": 13200000000.000002,
+      "unit": "Pa",
+      "baseline_fraction": [
+        0.9,
+        1.1
+      ]
+    },
+    "G_Pa": {
+      "minimum": 3600000000.0,
+      "maximum": 4400000000.0,
+      "unit": "Pa",
+      "baseline_fraction": [
+        0.9,
+        1.1
+      ]
+    },
+    "rho_kg_m3": {
+      "minimum": 1520.0,
+      "maximum": 1680.0,
+      "unit": "kg/m^3",
+      "baseline_fraction": [
+        0.95,
+        1.05
+      ]
+    }
+  },
+  "physical_test_performed": false
+}
