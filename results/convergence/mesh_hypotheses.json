@@ -1,0 +1,169 @@
+{
+  "source": "calculix_ccx_native",
+  "gmsh_baseline": {
+    "mesh_size_m": 0.025,
+    "frequencies_hz": [
+      21.65319,
+      32.8875,
+      137.592,
+      137.6317,
+      150.6446,
+      167.9892
+    ],
+    "rigid_frequencies_hz": [
+      0.0,
+      0.0001771389,
+      0.0003060907,
+      0.0004099993,
+      0.0005388704,
+      0.000685462
+    ],
+    "mass_kg": 1.0819299087727594,
+    "shell_elements": 116,
+    "node_count": 473,
+    "wall_seconds": 0.6222575409337878,
+    "mesh_generator": "native_gmsh_msh2",
+    "options": {}
+  },
+  "variants": {
+    "structured_default": {
+      "mesh_size_m": 0.025,
+      "frequencies_hz": [
+        21.65319,
+        32.8875,
+        137.592,
+        137.6317,
+        150.6446,
+        167.9892
+      ],
+      "rigid_frequencies_hz": [
+        0.0,
+        0.0,
+        0.0001158256,
+        0.0002606388,
+        0.0002666375,
+        0.0006052157
+      ],
+      "mass_kg": 1.0819299087727594,
+      "shell_elements": 116,
+      "node_count": 473,
+      "wall_seconds": 0.3327269998844713,
+      "mesh_generator": "deterministic_structured_fallback",
+      "options": {},
+      "change_from_gmsh_baseline_percent": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "structured_wide": {
+      "mesh_size_m": 0.025,
+      "frequencies_hz": [
+        21.72457,
+        33.1996,
+        138.072,
+        138.1116,
+        153.121,
+        170.5035
+      ],
+      "rigid_frequencies_hz": [
+        0.0,
+        0.0,
+        0.0,
+        0.0006174971,
+        0.0007903858,
+        0.0009870647
+      ],
+      "mass_kg": 1.0819299087727594,
+      "shell_elements": 220,
+      "node_count": 809,
+      "wall_seconds": 0.5006704579573125,
+      "mesh_generator": "deterministic_structured_fallback",
+      "options": {
+        "width_division_scale": 2.0
+      },
+      "change_from_gmsh_baseline_percent": [
+        0.329651196890626,
+        0.9489927784112316,
+        0.3488574917146271,
+        0.3486842057462161,
+        1.6438690799404774,
+        1.4967033595016772
+      ]
+    },
+    "structured_narrow": {
+      "mesh_size_m": 0.025,
+      "frequencies_hz": [
+        21.65864,
+        32.88783,
+        137.5924,
+        137.6325,
+        150.6965,
+        168.0296
+      ],
+      "rigid_frequencies_hz": [
+        0.0,
+        0.0,
+        0.0,
+        0.0002267607,
+        0.0002561296,
+        0.0004150966
+      ],
+      "mass_kg": 1.0819299087727594,
+      "shell_elements": 104,
+      "node_count": 433,
+      "wall_seconds": 0.2880234580952674,
+      "mesh_generator": "deterministic_structured_fallback",
+      "options": {
+        "width_division_scale": 0.5
+      },
+      "change_from_gmsh_baseline_percent": [
+        0.025169501583830065,
+        0.001003420752559985,
+        0.00029071457641785634,
+        0.0005812614390421215,
+        0.0344519484933341,
+        0.024049165065359496
+      ]
+    },
+    "hub_stiff_x10": {
+      "mesh_size_m": 0.025,
+      "frequencies_hz": [
+        25.28406,
+        32.99656,
+        137.6913,
+        137.6952,
+        151.3908,
+        168.6585
+      ],
+      "rigid_frequencies_hz": [
+        0.0,
+        0.0002881671,
+        0.0003434778,
+        0.0004005164,
+        0.0005073334,
+        0.0005945186
+      ],
+      "mass_kg": 1.0819299087727594,
+      "shell_elements": 116,
+      "node_count": 473,
+      "wall_seconds": 0.4477365838829428,
+      "mesh_generator": "native_gmsh_msh2",
+      "options": {
+        "hub_stiffness_multiplier": 10.0
+      },
+      "change_from_gmsh_baseline_percent": [
+        16.768291415722125,
+        0.3316153553781816,
+        0.07216989359846465,
+        0.046137626724079395,
+        0.4953380340218076,
+        0.3984184697587658
+      ]
+    }
+  },
+  "explicit_plate_status": "experimental separated-plate deck failed six-rigid-mode validation; excluded"
+}

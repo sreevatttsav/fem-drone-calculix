@@ -141,7 +141,9 @@ def _solver_version(binary: str, solve_output: str) -> str:
 
 def solve_calculix(design: dict[str, Any], output_dir: str | Path,
                    mesh_size_m: float = 0.012, flexible_count: int = 6,
-                   ccx_path: str = "ccx") -> dict[str, Any]:
+                   ccx_path: str = "ccx", mesh_generator: str = "auto",
+                   width_division_scale: float = 1.0,
+                   hub_stiffness_multiplier: float = 1.0) -> dict[str, Any]:
     """Generate deck, execute ``ccx -i <stem>``, and parse all requested modes.
 
     The first six modes are expected to be free-free rigid modes. A failed
@@ -161,7 +163,10 @@ def solve_calculix(design: dict[str, Any], output_dir: str | Path,
     out = Path(output_dir).resolve()
     out.mkdir(parents=True, exist_ok=True)
     deck = write_calculix_deck(design, out, mesh_size_m=mesh_size_m,
-                               mode_count=6 + flexible_count)
+                               mode_count=6 + flexible_count,
+                               mesh_generator=mesh_generator,
+                               width_division_scale=width_division_scale,
+                               hub_stiffness_multiplier=hub_stiffness_multiplier)
     inp = Path(deck["inp_path"]).resolve()
     if not inp.exists() or inp.parent != out:
         raise RuntimeError("CalculiX deck writer returned an invalid input path")

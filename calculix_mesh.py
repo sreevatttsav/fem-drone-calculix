@@ -38,11 +38,13 @@ def _patches(design: dict) -> list[dict]:
     return patches
 
 
-def _dimensions(patch: dict, mesh_size_m: float) -> tuple[int, int]:
+def _dimensions(patch: dict, mesh_size_m: float,
+                width_division_scale: float = 1.0) -> tuple[int, int]:
     p = patch["corners"]
     along = math.dist(p[0],p[1]); across = math.dist(p[1],p[2])
     # Even counts place nodes at the hub centre and motor centre.
-    return max(2, 2*math.ceil(along/(2*mesh_size_m))), max(2, 2*math.ceil(across/(2*mesh_size_m)))
+    return (max(2, 2*math.ceil(along/(2*mesh_size_m))),
+            max(2, 2*math.ceil(across*width_division_scale/(2*mesh_size_m))))
 
 
 def _interp(p: list[tuple[float,float]], s: float, t: float, z: float) -> tuple[float,float,float]:
@@ -51,7 +53,8 @@ def _interp(p: list[tuple[float,float]], s: float, t: float, z: float) -> tuple[
             sum(w*q[1] for w,q in zip(weights,p)), z)
 
 
-def _structured_mesh(patches: list[dict], mesh_size_m: float):
+def _structured_mesh(patches: list[dict], mesh_size_m: float,
+                     width_division_scale: float = 1.0):
     nodes: dict[int,tuple[float,float,float]] = {}
     elements: dict[int,tuple[int,list[int]]] = {}
     lookup: dict[tuple[int,tuple[float,float,float]],int] = {}
@@ -61,7 +64,7 @@ def _structured_mesh(patches: list[dict], mesh_size_m: float):
             idx = len(nodes)+1; lookup[key] = idx; nodes[idx] = xyz
         return lookup[key]
     for pid, patch in enumerate(patches, start=1):
-        ni,nj = _dimensions(patch,mesh_size_m)
+        ni,nj = _dimensions(patch,mesh_size_m,width_division_scale)
         p,z = patch["corners"],patch["z"]
         for i in range(ni):
             for j in range(nj):
@@ -126,7 +129,8 @@ def _closest(nodes: dict, point: tuple[float,float,float], allowed: set[int] | N
 
 
 def _write_deck(path: Path, design: dict, patches: list[dict], nodes: dict,
-                elements: dict, mode_count: int) -> tuple[list[int],list[list[float]],float,dict]:
+                elements: dict, mode_count: int,
+                hub_stiffness_multiplier: float = 1.0) -> tuple[list[int],list[list[float]],float,dict]:
     # Keep patch node sets separate; Gmsh and fallback use identical patch tags.
     patch_nodes={pid:set() for pid in range(1,len(patches)+1)}
     patch_elems={pid:[] for pid in range(1,len(patches)+1)}
@@ -161,9 +165,10 @@ def _write_deck(path: Path, design: dict, patches: list[dict], nodes: dict,
     E1,E2,E3=design['E_long_Pa'],design['E_trans_Pa'],design['E_through_Pa']
     G12,G13,G23=design['G_Pa'],design['G13_Pa'],design['G23_Pa']
     for material,scale in (("CARBON_EQUIV",1.0),("HUB_EQUIV",patches[0]['material_scale'])):
+        elastic_scale=scale*(hub_stiffness_multiplier if material=="HUB_EQUIV" else 1.0)
         lines += [f'*MATERIAL, NAME={material}', '*ELASTIC, TYPE=ENGINEERING CONSTANTS']
-        lines.append(f"{E1*scale:.12g}, {E2*scale:.12g}, {E3*scale:.12g}, {design['nu12']:.12g}, {design['nu13']:.12g}, {design['nu23']:.12g}, {G12*scale:.12g}, {G13*scale:.12g}")
-        lines += [f'{G23*scale:.12g}', '*DENSITY', f'{rho*scale:.12g}']
+        lines.append(f"{E1*elastic_scale:.12g}, {E2*elastic_scale:.12g}, {E3*elastic_scale:.12g}, {design['nu12']:.12g}, {design['nu13']:.12g}, {design['nu23']:.12g}, {G12*elastic_scale:.12g}, {G13*elastic_scale:.12g}")
+        lines += [f'{G23*elastic_scale:.12g}', '*DENSITY', f'{rho*scale:.12g}']
     for pid,patch in enumerate(patches,start=1):
         ax=patch['axis']; ay=(-ax[1],ax[0],0.0)
         if pid==1: ay=(0.0,1.0,0.0)
@@ -216,11 +221,15 @@ def _write_deck(path: Path, design: dict, patches: list[dict], nodes: dict,
                                                 'hub_model':'coplanar_equivalent_two_plate_shell',
                                                 'hub_equivalent_thickness_m':patches[0]['thickness'],
                                                 'hub_material_scale':patches[0]['material_scale'],
+                                                'hub_stiffness_multiplier':hub_stiffness_multiplier,
                                                 'clamp_model':'hub_corner_interpolation_EQUATION'}
 
 
 def write_calculix_deck(design: dict, out_dir: str | Path,
-                        mesh_size_m: float = 0.012, mode_count: int = 18) -> dict:
+                        mesh_size_m: float = 0.012, mode_count: int = 18,
+                        mesh_generator: str = "auto",
+                        width_division_scale: float = 1.0,
+                        hub_stiffness_multiplier: float = 1.0) -> dict:
     """Write .inp and mesh manifest; no CalculiX solve is performed.
 
     Returns absolute ``inp_path``, four ``tip_node_ids`` in X-arm angle order,
@@ -230,6 +239,12 @@ def write_calculix_deck(design: dict, out_dir: str | Path,
         raise ValueError('mesh_size_m must be finite and positive')
     if not isinstance(mode_count,int) or mode_count<7:
         raise ValueError('mode_count must be at least seven (six rigid modes)')
+    if mesh_generator not in {"auto", "gmsh", "structured"}:
+        raise ValueError("mesh_generator must be auto, gmsh, or structured")
+    if not math.isfinite(width_division_scale) or width_division_scale <= 0:
+        raise ValueError("width_division_scale must be positive and finite")
+    if not math.isfinite(hub_stiffness_multiplier) or hub_stiffness_multiplier <= 0:
+        raise ValueError("hub_stiffness_multiplier must be positive and finite")
     # Validate the shared configuration without changing user parameters.
     from geometry import load_design as _load
     import tempfile
@@ -239,7 +254,9 @@ def write_calculix_deck(design: dict, out_dir: str | Path,
     patches=_patches(design)
     geo=out/'x_quad_shells.geo'; geo.write_text(_geo_text(patches,mesh_size_m))
     gmsh=shutil.which('gmsh')
-    if gmsh:
+    if mesh_generator == "gmsh" and not gmsh:
+        raise FileNotFoundError("Gmsh requested but not installed")
+    if gmsh and mesh_generator != "structured":
         msh=out/'x_quad_shells.msh'
         run=subprocess.run([gmsh,'-2','-format','msh2','-o',str(msh),str(geo)],
                            capture_output=True,text=True,timeout=120)
@@ -247,11 +264,13 @@ def write_calculix_deck(design: dict, out_dir: str | Path,
             raise RuntimeError(f'Gmsh meshing failed: {run.stderr[-2000:]}')
         nodes,elements=_parse_msh2(msh); generator='native_gmsh_msh2'
     else:
-        nodes,elements=_structured_mesh(patches,mesh_size_m)
+        nodes,elements=_structured_mesh(patches,mesh_size_m,width_division_scale)
         generator='deterministic_structured_fallback'
     deck=out/'x_quad_modal.inp'
-    tips,locations,mass,metadata=_write_deck(deck,design,patches,nodes,elements,mode_count)
+    tips,locations,mass,metadata=_write_deck(deck,design,patches,nodes,elements,
+                                             mode_count,hub_stiffness_multiplier)
     metadata.update({'generator':generator,'target_size_m':mesh_size_m,
+                     'width_division_scale':width_division_scale,
                      'geometry_file':str(geo),'mode_count_requested':mode_count})
     result={'inp_path':str(deck),'tip_node_ids':tips,'tip_locations_m':locations,
             'mass_estimate_kg':mass,'mesh':metadata,

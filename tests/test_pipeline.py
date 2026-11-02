@@ -164,6 +164,13 @@ class PipelineTests(unittest.TestCase):
             self.assertFalse((output / "surrogate_model.json").exists())
             self.assertTrue((output / "data/dataset.json").exists())
 
+    def test_corner_mesh_check_requires_native_backend(self):
+        from run_pipeline import run
+
+        with self.assertRaisesRegex(ValueError, "CalculiX backend"):
+            run(Path("unused.json"), Path("unused-output"), 10, 42, 4,
+                backend="beam", mesh_refine_check=True)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -31,11 +31,13 @@ def _save_json(path: Path, value: dict) -> None:
 def run(config_path: Path, out_dir: Path, count: int, seed: int,
         elements_per_arm: int, compare_ml: bool = False,
         backend: str = "calculix", mesh_size_m: float = 0.01,
-        ccx_path: str = "ccx") -> dict:
+        ccx_path: str = "ccx", mesh_refine_check: bool = False) -> dict:
     if backend not in SOURCES:
         raise ValueError(f"unsupported backend: {backend}")
     if compare_ml and count < 50:
         raise ValueError("named-model comparison requires at least 50 successful designs")
+    if mesh_refine_check and backend != "calculix":
+        raise ValueError("corner mesh refinement requires the CalculiX backend")
     if backend == "calculix" and shutil.which(ccx_path) is None:
         raise FileNotFoundError(
             f"CalculiX executable '{ccx_path}' was not found; install ccx or pass --ccx-path. "
@@ -69,6 +71,19 @@ def run(config_path: Path, out_dir: Path, count: int, seed: int,
                        "fine_mesh_size_m": mesh_size_m / 2}
     _save_json(out_dir / "baseline_fem.json", modal)
     _save_json(out_dir / "mesh_convergence.json", convergence)
+    corner_summary = None
+    if mesh_refine_check:
+        from tools.convergence_study import run_corner_check
+        corner = run_corner_check(design, out_dir / "corner_mesh_cases",
+                                  ccx_path, mesh_size_m)
+        _save_json(out_dir / "corner_mesh_check.json", corner)
+        corner_summary = {
+            "case_count": len(corner["cases"]),
+            "max_six_mode_change_percent": max(
+                row["max_target_change_percent"] for row in corner["cases"]),
+            "recommend_finer_mesh_for": corner["recommend_finer_mesh_for"],
+            "report_path": "corner_mesh_check.json",
+        }
     if backend == "calculix" and count > 10 and not convergence["meets_two_percent_first_five"]:
         raise RuntimeError("CalculiX mesh convergence exceeds 2% for a target mode; inspect mesh_convergence.json before a larger sweep")
     dataset = generate_dataset(design, count=count, seed=seed,
@@ -112,6 +127,7 @@ def run(config_path: Path, out_dir: Path, count: int, seed: int,
         "failed_designs": dataset["metadata"]["failed_designs"],
         "mesh_convergence_first_five_within_two_percent": convergence.get(
             "meets_two_percent_first_five", convergence.get("passes_2_percent")),
+        "corner_mesh_check": corner_summary,
         "held_out_metrics": held_out_summary,
         "screen_passes": check["passes"] if check is not None else None,
         "pipeline_stage": "pilot_sweep_only" if model is None else "surrogate_and_screen_complete",
@@ -147,11 +163,14 @@ def main() -> None:
     parser.add_argument("--ccx-path", default="ccx")
     parser.add_argument("--compare-ml", action="store_true",
                         help="also compare ANN, GPR, XGBoost; requires requirements-ml.txt")
+    parser.add_argument("--mesh-refine-check", action="store_true",
+                        help="also check eight extreme designs on coarse and half-size meshes")
     args = parser.parse_args()
     try:
         result = run(args.config, args.out, args.count, args.seed,
                      args.elements_per_arm, args.compare_ml,
-                     args.backend, args.mesh_size_m, args.ccx_path)
+                     args.backend, args.mesh_size_m, args.ccx_path,
+                     args.mesh_refine_check)
     except FileNotFoundError as exc:
         parser.exit(2, f"error: {exc}\n")
     print(json.dumps(result, indent=2))
